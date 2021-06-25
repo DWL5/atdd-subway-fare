@@ -34,8 +34,13 @@ public class Sections {
 
         Section nextSection = start;
         while (nextSection != null) {
-            sorted.add(nextSection);
             nextSection = findSectionByNextUpStation(nextSection.getDownStation());
+
+            if (nextSection == null) {
+                break;
+            }
+
+            sorted.add(nextSection);
         }
         return sorted;
     }
