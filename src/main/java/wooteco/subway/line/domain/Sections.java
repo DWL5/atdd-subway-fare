@@ -24,7 +24,20 @@ public class Sections {
     }
 
     public List<Section> getSections() {
-        return sections;
+        return sort();
+    }
+
+    private List<Section> sort() {
+        List<Section> sorted = new ArrayList<>();
+        Section start = findUpEndSection();
+        sorted.add(start);
+
+        Section nextSection = start;
+        while (nextSection != null) {
+            sorted.add(nextSection);
+            nextSection = findSectionByNextUpStation(nextSection.getDownStation());
+        }
+        return sorted;
     }
 
     public void addSection(Section section) {
